@@ -1,0 +1,15 @@
+Email Address: fbuetefuer@gmail.com
+Picture: 20820554-0.jpg
+Lithophane Resolution: 0.25
+Colored Resolution: 0.8
+Layer Height: 0.1
+Width: 99.99
+Maximum Thickness: 2.7
+Minimum Thickness: 0.8
+Height: 128.56
+X Shift: 0.5
+Y Shift: 0.5
+Rectangle Scale: 1.0
+Crop?: 
+First Layer Height: 0.2
+Filaments for Color Palette: Printed Solid CMYK

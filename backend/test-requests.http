@@ -1,0 +1,37 @@
+GET http://localhost:3001/applications
+
+###
+
+POST http://localhost:3001/applications
+Content-Type: application/json
+
+{
+    "company": "Beispiel GmbH",
+    "position": "Softwareentwickler",
+    "status": "offen",
+    "contact_person": "Max Muster",
+    "email": "max.muster@example.com",
+    "phone": "123456789",
+    "date_applied": "2025-01-07",
+    "notes": "Test-Bewerbung"
+}
+
+###
+
+PUT http://localhost:3001/applications/1
+Content-Type: application/json
+
+{
+    "company": "Beispiel GmbH",
+    "position": "Senior Entwickler",
+    "status": "Interview",
+    "contact_person": "Max Muster",
+    "email": "max.muster@example.com",
+    "phone": "123456789",
+    "date_applied": "2025-01-07",
+    "notes": "Interview geplant am 10.01.2025."
+}
+
+###
+
+DELETE http://localhost:3001/applications/1
