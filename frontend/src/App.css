@@ -44,3 +44,24 @@ body {
   a:hover {
     text-decoration: underline;
   }
+
+  /* Container für die Anwendung zentrieren und die maximale Breite festlegen */
+.app-container {
+  max-width: 1200px; /* Maximale Breite festlegen (z.B. 1200px) */
+  margin: 0 auto; /* Zentriert den Container horizontal */
+  padding: 20px; /* Fügt Abstand zum Rand hinzu */
+}
+
+/* Sicherstellen, dass der Container auf mobilen Geräten auch gut aussieht */
+.app-container {
+  max-width: 1200px;
+  width: 100%; /* Damit der Container auf kleinen Bildschirmen nicht die ganze Breite überschreitet */
+  margin: 0 auto;
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
+  .app-container {
+    padding: 10px; /* Weniger Abstand auf mobilen Geräten */
+  }
+}
