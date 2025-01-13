@@ -12,6 +12,7 @@ RUN npm install
 
 # Kopiere den gesamten Frontend-Code in das Arbeitsverzeichnis im Container
 COPY frontend/ .
+RUN ls -la /usr/src/app
 
 # Baue die Anwendung für die Produktion
 RUN npm run build
