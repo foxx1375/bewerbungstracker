@@ -1,13 +1,17 @@
 FROM node:16
 
+# Setze das Arbeitsverzeichnis
 WORKDIR /usr/src/app
 
-COPY package*.json ./
-
+# Kopiere package.json und installiere die Abhängigkeiten
+COPY backend/package*.json ./
 RUN npm install
 
-COPY . .
+# Kopiere den Rest der Anwendung
+COPY backend/ .
 
+# Exponiere den Port
 EXPOSE 3001
 
+# Starte die Anwendung
 CMD ["node", "server.js"]

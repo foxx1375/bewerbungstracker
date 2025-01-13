@@ -1,21 +1,23 @@
-# Build Stage
-FROM node:16 as build
+# Wähle ein offizielles Node.js-Image als Basis
+FROM node:16
 
-WORKDIR /app
+# Setze das Arbeitsverzeichnis im Container
+WORKDIR /usr/src/app
 
-COPY package*.json ./
+# Kopiere die package.json und package-lock.json, um die Abhängigkeiten zu installieren
+COPY frontend/package*.json ./
 
+# Installiere die Abhängigkeiten
 RUN npm install
 
-COPY . .
+# Kopiere den gesamten Frontend-Code in das Arbeitsverzeichnis im Container
+COPY frontend/ .
 
+# Baue die Anwendung für die Produktion
 RUN npm run build
 
-# Production Stage
-FROM nginx:alpine
+# Exponiere den Port, auf dem der Server laufen wird
+EXPOSE 3000
 
-COPY --from=build /app/build /usr/share/nginx/html
-
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
+# Setze den Startbefehl für die Anwendung
+CMD ["npm", "start"]
