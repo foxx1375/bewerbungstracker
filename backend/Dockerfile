@@ -15,7 +15,7 @@ WORKDIR /usr/src/app
 COPY backend/package*.json ./
 
 # Installiere npm-Abhängigkeiten, einschließlich sqlite3
-RUN npm install sqlite3 --build-from-source
+RUN npm install --build-from-source sqlite3
 
 # Kopiere den Rest des Quellcodes
 COPY backend/ .
