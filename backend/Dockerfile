@@ -1,11 +1,13 @@
 FROM node:16
 
+# Installiere Build-Tools
+RUN apt-get update && apt-get install -y build-essential
+
 # Setze das Arbeitsverzeichnis
 WORKDIR /usr/src/app
 
 # Kopiere package.json und installiere die Abhängigkeiten
 COPY backend/package*.json ./
-RUN ls -la /usr/src/app
 RUN npm install
 
 # Kopiere den Rest der Anwendung
