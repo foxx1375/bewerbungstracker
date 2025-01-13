@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  frontend:
+    image: node:16
+    container_name: bewerbungstracker_frontend
+    working_dir: /usr/src/app
+    volumes:
+      - ./frontend:/usr/src/app
+    ports:
+      - "3000:3000"
+    command: "npm start"
+    environment:
+      - NODE_ENV=production
+    networks:
+      - bewerbungstracker_network
+
+  backend:
+    image: node:16
+    container_name: bewerbungstracker_backend
+    working_dir: /usr/src/app
+    volumes:
+      - ./backend:/usr/src/app
+    ports:
+      - "3001:3001"
+    command: "node server.js"
+    environment:
+      - NODE_ENV=production
+    networks:
+      - bewerbungstracker_network
+    depends_on:
+      - frontend
+
+  # Optional: Für die Datenbank (SQLite als Beispiel)
+  database:
+    image: nouchka/sqlite3
+    container_name: bewerbungstracker_db
+    volumes:
+      - ./data:/data
+    environment:
+      - SQLITE_DATABASE=/data/bewerbungstracker.db
+    networks:
+      - bewerbungstracker_network
+
+networks:
+  bewerbungstracker_network:
+    driver: bridge
