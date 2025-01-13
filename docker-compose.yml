@@ -3,7 +3,7 @@ version: '3.8'
 services:
   frontend:
     build:
-      context: https://github.com/foxx1375/bewerbungstracker.git#refs/heads/main
+      context: https://github.com/foxx1375/bewerbungstracker.git#refs/heads/master
       dockerfile: frontend/Dockerfile
     container_name: bewerbungstracker_frontend
     ports:
@@ -15,7 +15,7 @@ services:
 
   backend:
     build:
-      context: https://github.com/foxx1375/bewerbungstracker.git#refs/heads/main
+      context: https://github.com/foxx1375/bewerbungstracker.git#refs/heads/master
       dockerfile: backend/Dockerfile
     container_name: bewerbungstracker_backend
     ports:
