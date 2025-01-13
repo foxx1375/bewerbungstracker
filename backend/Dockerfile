@@ -1,23 +1,27 @@
-# Verwende ein Multi-Arch-Node-Image, das automatisch die richtige Architektur auswählt
-FROM --platform=linux/amd64,linux/arm64 node:16
+# Basis-Image von Node.js (16)
+FROM node:16
 
-# Setze das Arbeitsverzeichnis im Container
+# Installiere die nötigen Pakete für den Build (Build-Tools, etc.)
+RUN apt-get update && apt-get install -y \
+  python3 \
+  g++ \
+  make \
+  && rm -rf /var/lib/apt/lists/*
+
+# Arbeitsverzeichnis im Container
 WORKDIR /usr/src/app
 
-# Kopiere die package.json und package-lock.json (wenn vorhanden) und installiere die Abhängigkeiten
-COPY package*.json ./
+# Kopiere package.json und package-lock.json, um Abhängigkeiten zu installieren
+COPY backend/package*.json ./
 
-RUN npm install
+# Installiere npm-Abhängigkeiten, einschließlich sqlite3
+RUN npm install sqlite3 --build-from-source
 
-# Kopiere den Rest der Anwendung
-COPY . .
+# Kopiere den Rest des Quellcodes
+COPY backend/ .
 
-# Baue die Anwendung (falls nötig, für Frontend)
-# Für das Backend ist das nicht erforderlich
-RUN npm run build
-
-# Exponiere den Port, auf dem der Backend-Server läuft (3001)
+# Exponiere den Port 3001
 EXPOSE 3001
 
-# Starte den Server
+# Setze den Startbefehl für den Container
 CMD ["node", "server.js"]
